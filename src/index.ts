@@ -3,9 +3,13 @@ import { rover } from './models/rover';
 
 // Taking User String Input (Name Input)
 const prompt  = promptSync();
+let direction = '';
 
-const name = prompt('What is your name?');
+while(direction.toUpperCase() != 'Q') {
+    rover.getInformations();
+    direction = prompt('Choisissez une direction : F pour avancer, B pour reculer, L pour aller à gauche, R pour aller à droite : ');
 
-console.log(`Hello, ${name}! Welcome to Code in Piece!`);
+    (direction == 'F' || direction == 'B') ? rover.move(direction) : rover.turn(direction);
+}
 
-console.log(rover.getInformations())
+console.log('Vous avez quitté l\'application');
