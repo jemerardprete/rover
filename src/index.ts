@@ -3,13 +3,12 @@ import { rover } from './models/rover';
 
 // Taking User String Input (Name Input)
 const prompt  = promptSync();
-let direction = '';
+let movements = '';
 
-while(direction.toUpperCase() != 'Q') {
+while(movements.toUpperCase() != 'Q') {
     rover.getInformations();
-    direction = prompt('Choisissez une direction : F pour avancer, B pour reculer, L pour aller à gauche, R pour aller à droite : ');
-
-    (direction == 'F' || direction == 'B') ? rover.move(direction) : rover.turn(direction);
+    movements = prompt('Indiquez une suite de commande pour déplacer le rover : F pour avancer, B pour reculer, L pour aller à gauche, R pour aller à droite : ');
+    rover.generateAction(movements);
 }
 
 console.log('Vous avez quitté l\'application');
