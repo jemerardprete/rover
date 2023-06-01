@@ -38,6 +38,7 @@ class Direction {
       case 'W':
         return new Direction('N');
       default:
+        console.log('pog');
         throw new Error('Invalid direction');
     }
   }

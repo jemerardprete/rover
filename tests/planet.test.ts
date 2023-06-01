@@ -33,4 +33,27 @@ describe('Planet', () => {
     expect(rover.position.y).to.equal(9);
     expect(rover.position.x).to.equal(0);
   });
+
+  it('should be able to check if rover is in obstacle', () => {
+    const planet = new Planet(10);
+    planet.obstacles = [new Position(0, 0)];
+    const rover = new Rover(new Position(0, 0), new Direction('N'));
+    expect(planet.isInObstacle(rover)).to.equal(true);
+  });
+
+  it('should be able to warp rover < size', () => {
+    const planet = new Planet(10);
+    const rover = new Rover(new Position(-1, -1), new Direction('N'));
+    planet.warpRover(rover);
+    expect(rover.position.y).to.equal(9);
+    expect(rover.position.x).to.equal(9);
+  });
+
+  it('should be able to warp rover > size', () => {
+    const planet = new Planet(10);
+    const rover = new Rover(new Position(10, 10), new Direction('N'));
+    planet.warpRover(rover);
+    expect(rover.position.y).to.equal(0);
+    expect(rover.position.x).to.equal(0);
+  });
 });

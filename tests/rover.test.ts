@@ -18,18 +18,55 @@ describe('Rover', () => {
   it('should have a direction', () => {
     const rover = new Rover(new Position(0, 0), new Direction('N'));
     expect(rover.direction).to.be.an.instanceOf(Direction);
+    expect(rover.direction.direction).to.equal('N');
   });
 
-  it('should be able to move forward', () => {
+  it('should be able to move forward from N', () => {
     const rover = new Rover(new Position(0, 0), new Direction('N'));
     rover.moveForward();
     expect(rover.position.y).to.equal(1);
   });
 
-  it('should be able to move backward', () => {
+  it('should be able to move forward from S', () => {
+    const rover = new Rover(new Position(0, 0), new Direction('S'));
+    rover.moveForward();
+    expect(rover.position.y).to.equal(-1);
+  });
+
+  it('should be able to move forward from E', () => {
+    const rover = new Rover(new Position(0, 0), new Direction('E'));
+    rover.moveForward();
+    expect(rover.position.x).to.equal(1);
+  });
+
+  it('should be able to move forward from W', () => {
+    const rover = new Rover(new Position(0, 0), new Direction('W'));
+    rover.moveForward();
+    expect(rover.position.x).to.equal(-1);
+  });
+
+  it('should be able to move backward from N', () => {
     const rover = new Rover(new Position(0, 0), new Direction('N'));
     rover.moveBackward();
     expect(rover.position.y).to.equal(-1);
+  });
+
+  it('should be able to move backward from S', () => {
+    const rover = new Rover(new Position(0, 0), new Direction('S'));
+    rover.moveBackward();
+    expect(rover.position.y).to.equal(1);
+  });
+
+  it('should be able to move backward from E', () => {
+    const rover = new Rover(new Position(0, 0), new Direction('E'));
+    rover.moveBackward();
+    expect(rover.position.x).to.equal(-1);
+  });
+
+  it('should be able to move backward from W', () => {
+    const rover = new Rover(new Position(0, 0), new Direction('W'));
+    rover.moveBackward();
+    expect(rover.position.x).to.equal(1);
   });
 
   it('should be able to turn left', () => {
