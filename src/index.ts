@@ -1,9 +1,13 @@
 import promptSync from 'prompt-sync'
-import { rover } from './models/rover';
+import { Orientation } from './models/Orientation.enum';
+import { Jupiter } from './models/Planet';
+import Position from './models/Position';
+import { Rover } from './models/rover';
 
 // Taking User String Input (Name Input)
 const prompt  = promptSync();
 let movements = '';
+const rover = new Rover(new Position(0, 0), Orientation.North, Jupiter);
 
 while(movements.toUpperCase() != 'Q') {
     rover.getInformations();

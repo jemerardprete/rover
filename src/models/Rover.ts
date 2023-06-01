@@ -2,7 +2,7 @@ import { Orientation } from "./Orientation.enum";
 import Position from "./Position";
 import { Mars, Jupiter, Planet } from "./Planet";
 
-class Rover {
+export class Rover {
   position: Position;
   orientation: Orientation;
   planet: Planet;
@@ -14,12 +14,12 @@ class Rover {
     this.planet = planet;
   }
 
-  generateAction(listActions: string) {
+  public generateAction(listActions: string) {
     for (let i = 0; i < listActions.length; i++) {
       const character = listActions.charAt(i);
       if (!['F', 'B', 'L', 'R'].includes(character))
         continue;
-      (character == 'F' || character == 'B') ? rover.move(character) : rover.turn(character);
+      (character == 'F' || character == 'B') ? this.move(character) : this.turn(character);
       if(this.hasObstacle) {
         console.log('Il y a un obstacle');
         return;
@@ -63,16 +63,22 @@ class Rover {
 
     this.position = this.checkHasObstacle() ? oldPosition : this.position;
 
-    this.position.x = this.updatePosition(this.position.x, this.planet.sizeX);
-    this.position.y = this.updatePosition(this.position.y, this.planet.sizeY);
+    this.position.x = this.verifyOrRefreshPosition(this.position.x, this.planet.sizeX);
+    this.position.y = this.verifyOrRefreshPosition(this.position.y, this.planet.sizeY);
 
     console.log('Le Rover se déplace');
   }
 
-  private updatePosition(position: number, planetSizeMax: number) {
+  /**
+   * Vérifie et renvoie la  position (x ou y) du rover et l'actualise s'il dépasse la taille minimum ou maximum de la planète.
+   * @param position x ou y du rover a actualisé
+   * @param planetSizeMax taille x ou y maximum de la planète
+   * @returns la nouvelle position actualisé ou non
+   */
+  verifyOrRefreshPosition(position: number, planetSizeMax: number) {
     if (position > planetSizeMax) return 0;
     if (position < 0) return planetSizeMax;
-    return position
+    return position;
   }
 
   turn(direction: string) {
@@ -82,9 +88,12 @@ class Rover {
     };
 
     switch (this.orientation) {
-      case Orientation.North:
+      case Orientation.North:{
+          this.orientation = direction.toUpperCase() == 'L' ? Orientation.West : Orientation.East;
+          break;
+        }
       case Orientation.South: {
-        this.orientation = direction.toUpperCase() == 'L' ? Orientation.West : Orientation.East;
+        this.orientation = direction.toUpperCase() == 'L' ? Orientation.East : Orientation.West;
         break;
       }
       case Orientation.East: {
@@ -106,4 +115,3 @@ class Rover {
   }
 }
 
-export let rover = new Rover(new Position(0, 0), Orientation.North, Jupiter);
