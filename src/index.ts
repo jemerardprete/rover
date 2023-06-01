@@ -1,4 +1,4 @@
-import * as promptSync from 'prompt-sync'
+import promptSync from 'prompt-sync'
 import { rover } from './models/rover';
 
 // Taking User String Input (Name Input)

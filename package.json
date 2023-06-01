@@ -1,15 +1,16 @@
 {
   "devDependencies": {
-    "prompt-sync": "^4.2.0",
+    "@types/prompt-sync": "^4.2.0",
     "@typescript-eslint/eslint-plugin": "^5.59.8",
     "@typescript-eslint/parser": "^5.59.8",
     "chai": "^4.3.7",
     "eslint": "^8.41.0",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
+    "prompt-sync": "^4.2.0",
     "typescript": "^5.0.4"
   },
   "scripts": {
-    "start": "tsc src/index.ts --outDir build && node build/index.js"
+    "start": "npx ts-node src/index.ts"
   }
 }
