@@ -14,18 +14,7 @@ export class Rover {
     this.planet = planet;
   }
 
-  // public generateAction(listActions: string) {
-  //   for (let i = 0; i < listActions.length; i++) {
-  //     const character = listActions.charAt(i);
-  //     if (!['F', 'B', 'L', 'R'].includes(character))
-  //       continue;
-  //     (character == 'F' || character == 'B') ? this.move(character) : this.turn(character);
-  //     if(this.hasObstacle) {
-  //       console.log('Il y a un obstacle');
-  //       return;
-  //     }
-  //   }
-  // }
+
 
   checkHasObstacle() {
     this.hasObstacle = this.planet.obstacles.some(obs => obs.x === this.position.x && obs.y === this.position.y);
@@ -110,8 +99,5 @@ export class Rover {
     console.log('Le Rover pivote');
   }
 
-  // getInformations() {
-  //   console.log(`Le Rover se situe à ${this.position.x} en X, à ${this.position.y} en Y et est orienté au ${this.orientation}`)
-  // }
 }
 
