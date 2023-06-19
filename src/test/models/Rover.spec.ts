@@ -79,7 +79,7 @@ describe('Tester le comportement avancer du rover', () => {
     // GIVEN - ARRANGE
     const rover = RoverNorth();
     const saturne = PlanetSaturne();
-    const mouvements = 'AA';
+    const mouvements = 'AAA';
     const detector = DetectorInit(rover, saturne);
     const interpretor = RoverInterpretorInit(rover, detector);
     const panneauCommand = PanneauCommand(interpretor);

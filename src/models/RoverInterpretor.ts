@@ -12,7 +12,15 @@ export class RoverInterpretor {
     this.detector = detector;
   }
 
-  interpret(command: string) {
+  /**
+   * Interprêter les commandes pour faire bouger le rover s'il n'y pas d'obstacles et renvoie false s'il rencontre un obstacle
+   * @param command 
+   * @returns boolean 
+   */
+  interpretAndMoveIfPossible(command: string) {
+
+    if (this.detector.nextMoveHasObstacle(command)) return false;
+
     switch (command) {
       case 'A':
         this.rover.moveForward();
@@ -28,8 +36,9 @@ export class RoverInterpretor {
         break;
     }
 
-    if (this.detector.checkHasObstacle()) return;
     this.detector.checkAndRefreshRoverPosition();
+
+    return true;
 
   }
 

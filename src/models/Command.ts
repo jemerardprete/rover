@@ -19,8 +19,10 @@ export class Command {
       if (!['A', 'R', 'G', 'D'].includes(character))
         continue;
 
-      this.roverInterpretor.interpret(character);
+      const hasMoved = this.roverInterpretor.interpretAndMoveIfPossible(character);
 
+      if(hasMoved === false) break;
     }
+
   }
 }

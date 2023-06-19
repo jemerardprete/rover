@@ -1,5 +1,6 @@
 import { Rover } from "./Rover";
 import { Planet } from './Planet';
+import { Orientation } from "./Orientation.enum";
 
 export class Detector {
 
@@ -38,4 +39,44 @@ export class Detector {
 
     }
 
+    nextMoveHasObstacle(movement: string) {
+
+        if(movement !== 'A' && movement !== 'R') return false;
+
+        const roverFuturePosition = {...this.rover.position};
+        const roverOrientation = this.rover.orientation;
+        const obstacles = this.planet.getPositionObstacles();
+
+        // Si j'avance ou recule mon rover
+        switch (roverOrientation) {
+            case Orientation.North: {
+                roverFuturePosition.y = (movement === 'A') ? roverFuturePosition.y++ : roverFuturePosition.y--;
+                break;
+            };
+            case Orientation.South: {
+                roverFuturePosition.y = (movement === 'A') ? roverFuturePosition.y-- : roverFuturePosition.y++;
+                break;
+            };
+            case Orientation.East: {
+                roverFuturePosition.x = (movement === 'A') ? roverFuturePosition.x++ : roverFuturePosition.x--;
+                break;
+            };
+            case Orientation.West: {
+                roverFuturePosition.x = (movement === 'A') ? roverFuturePosition.x-- : roverFuturePosition.x++;
+                break;
+            };
+        }
+        // et que j'ai un obstacle sur la planète
+        const hasObstacle = obstacles.some(obs => obs.x === roverFuturePosition.x && obs.y === roverFuturePosition.y);
+
+        // je retourne true
+        if(hasObstacle) return true;
+
+        // sinon je retourne false
+        return false
+
+    }
+    
+    
+    
 }
