@@ -1,17 +1,14 @@
 import { Orientation } from "./Orientation.enum";
 import Position from "./Position";
-import {  Planet } from "./Planet";
 
 export class Rover {
   position: Position;
   orientation: Orientation;
-  
 
   constructor(position: Position, orientation: Orientation) {
     this.position = position;
     this.orientation = orientation;
   }
-
 
   /**
    * Permets au rover d'avancer en fonction de son orientation

@@ -1,5 +1,4 @@
 import { Rover } from './Rover';
-import { Detector } from './Detector';
 
 export class RoverInterpretor {
 

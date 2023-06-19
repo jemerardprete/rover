@@ -1,4 +1,3 @@
-import { Rover } from "./Rover";
 import { RoverInterpretor } from './RoverInterpretor';
 import { Detector } from './Detector';
 
