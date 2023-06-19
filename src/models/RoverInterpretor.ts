@@ -1,7 +1,7 @@
 import { Rover } from './Rover';
 
 export class RoverInterpretor {
-  Interceptor(command: string, rover: Rover) {
+  Interpretor(command: string, rover: Rover) {
     switch (command) {
       case 'A':
         rover.Avancer();
@@ -15,6 +15,11 @@ export class RoverInterpretor {
       case 'D':
         rover.Droite();
         break;
+    }
+
+    if (rover.hasObstacle) {
+      console.log('Il y a un obstacle');
+      return;
     }
   }
 }

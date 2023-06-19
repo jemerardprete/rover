@@ -1,7 +1,9 @@
 import { Rover } from "./Rover";
+import { RoverInterpretor } from './RoverInterpretor';
 
 export class Command {
 
+  roverInterpretor = new RoverInterpretor();
 /**
  * Méthode qui va permettre d'executer la liste de commande 
  * passer en parametre au rover comme le fait de se deplacer, pivoter  ou 
@@ -10,12 +12,14 @@ export class Command {
  * @param rover 
  * @returns 
  */
-  public executListCommand(listActions: string, rover: Rover) {
-    for (let i = 0; i < listActions.length; i++) {
-      const character = listActions.charAt(i);
-      if (!['F', 'B', 'L', 'R'].includes(character))
+  public executListCommand(commandList: string, rover: Rover) {
+    for (let i = 0; i < commandList.length; i++) {
+      const character =commandList.charAt(i);
+      if (!['A', 'R', 'G', 'D'].includes(character))
         continue;
-      (character == 'F' || character == 'B') ? rover.move(character) : rover.turn(character);
+
+      this.roverInterpretor.Interpretor(character,rover);
+      
       if (rover.hasObstacle) {
         console.log('Il y a un obstacle');
         return;
