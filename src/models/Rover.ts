@@ -13,14 +13,14 @@ export class Rover {
   /**
    * Permets au rover d'avancer en fonction de son orientation
    */
-  Avancer(){
+  moveForward() {
     switch (this.orientation) {
       case Orientation.North: {
         this.position.y = ++this.position.y;
         break;
       }
       case Orientation.South: {
-        this.position.y = --this.position.y ;
+        this.position.y = --this.position.y;
         break;
       }
       case Orientation.East: {
@@ -33,10 +33,11 @@ export class Rover {
       }
     }
   }
+  
   /**
    * Permets au rover de reculer en fonction de son orientation
    */
-  Reculer(){
+  moveBackward() {
     switch (this.orientation) {
       case Orientation.North: {
         this.position.y = --this.position.y;
@@ -57,16 +58,16 @@ export class Rover {
 
     }
   }
-  
+
   /**
    * Permets au rover de tourner sur sa gauche en fonction de son orientation
    */
-  Gauche(){
+  turnLeft() {
     switch (this.orientation) {
-      case Orientation.North:{
-          this.orientation = Orientation.West;
-          break;
-        }
+      case Orientation.North: {
+        this.orientation = Orientation.West;
+        break;
+      }
       case Orientation.South: {
         this.orientation = Orientation.East;
         break;
@@ -86,18 +87,18 @@ export class Rover {
   /**
    * Permets au rover de tourner sur sa droite en fonction de son orientation
    */
-  Droite(){
+  turnRight() {
     switch (this.orientation) {
-      case Orientation.North:{
-          this.orientation = Orientation.East;
-          break;
-        }
+      case Orientation.North: {
+        this.orientation = Orientation.East;
+        break;
+      }
       case Orientation.South: {
         this.orientation = Orientation.West;
         break;
       }
       case Orientation.East: {
-        this.orientation =  Orientation.South;
+        this.orientation = Orientation.South;
         break;
       }
       case Orientation.West: {
@@ -107,7 +108,4 @@ export class Rover {
     }
   }
 
-
-
 }
-

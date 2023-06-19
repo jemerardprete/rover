@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { PanneauCommand, PlanetJupiter, RoverNorth, RoverSouth, RoverInterpretorInit, DetectorInit } from '../utils/builder.spec';
+import { PanneauCommand, PlanetJupiter, PlanetSaturne, RoverNorth, RoverInterpretorInit, DetectorInit } from '../utils/builder.spec';
 import { Orientation } from '../../models/Orientation.enum';
 import 'mocha';
 
@@ -9,10 +9,11 @@ describe('Tester le comportement tourner du rover', () => {
     const rover = RoverNorth();
     const jupiter = PlanetJupiter();
     const mouvements = 'DDDD';
-    const interpretor = RoverInterpretorInit(rover);
     const detector = DetectorInit(rover, jupiter);
-    const panneauCommand = PanneauCommand(interpretor, detector);
-    
+
+    const interpretor = RoverInterpretorInit(rover, detector);
+    const panneauCommand = PanneauCommand(interpretor);
+
     // WHEN - ACT
     panneauCommand.executListCommand(mouvements);
 
@@ -25,9 +26,9 @@ describe('Tester le comportement tourner du rover', () => {
     const rover = RoverNorth();
     const jupiter = PlanetJupiter();
     const mouvements = 'DD';
-    const interpretor = RoverInterpretorInit(rover);
     const detector = DetectorInit(rover, jupiter);
-    const panneauCommand = PanneauCommand(interpretor, detector);
+    const interpretor = RoverInterpretorInit(rover, detector);
+    const panneauCommand = PanneauCommand(interpretor);
 
     // WHEN - ACT
     panneauCommand.executListCommand(mouvements);
@@ -42,9 +43,9 @@ describe('Tester le comportement tourner du rover', () => {
     const rover = RoverNorth();
     const jupiter = PlanetJupiter();
     const mouvements = 'G';
-    const interpretor = RoverInterpretorInit(rover);
     const detector = DetectorInit(rover, jupiter);
-    const panneauCommand = PanneauCommand(interpretor, detector);
+    const interpretor = RoverInterpretorInit(rover, detector);
+    const panneauCommand = PanneauCommand(interpretor);
 
     // WHEN - ACT
     panneauCommand.executListCommand(mouvements);
@@ -63,9 +64,9 @@ describe('Tester le comportement avancer du rover', () => {
     const rover = RoverNorth();
     const jupiter = PlanetJupiter();
     const mouvements = 'AA';
-    const interpretor = RoverInterpretorInit(rover);
     const detector = DetectorInit(rover, jupiter);
-    const panneauCommand = PanneauCommand(interpretor, detector);
+    const interpretor = RoverInterpretorInit(rover, detector);
+    const panneauCommand = PanneauCommand(interpretor);
 
     // WHEN - ACT
     panneauCommand.executListCommand(mouvements);
@@ -74,14 +75,30 @@ describe('Tester le comportement avancer du rover', () => {
     expect(rover.position.y).be.equal(2);
   });
 
+  it('Le rover rencontre un obstacle', () => {
+    // GIVEN - ARRANGE
+    const rover = RoverNorth();
+    const saturne = PlanetSaturne();
+    const mouvements = 'AA';
+    const detector = DetectorInit(rover, saturne);
+    const interpretor = RoverInterpretorInit(rover, detector);
+    const panneauCommand = PanneauCommand(interpretor);
+
+    // WHEN - ACT
+    panneauCommand.executListCommand(mouvements);
+
+    // THEN - ASSERT
+    expect(rover.position.y).be.equal(1);
+  });
+
   it('Le rover doit réinitialiser sa position lorsqu\'il arrive à une extremité de la planète', () => {
     // GIVEN - ARRANGE
     const rover = RoverNorth();
     const jupiter = PlanetJupiter();
     const mouvements = 'R';
-    const interpretor = RoverInterpretorInit(rover);
     const detector = DetectorInit(rover, jupiter);
-    const panneauCommand = PanneauCommand(interpretor, detector);
+    const interpretor = RoverInterpretorInit(rover, detector);
+    const panneauCommand = PanneauCommand(interpretor);
 
     // WHEN - ACT
     panneauCommand.executListCommand(mouvements);

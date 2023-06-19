@@ -1,22 +1,17 @@
 import { RoverInterpretor } from './RoverInterpretor';
-import { Detector } from './Detector';
 
 export class Command {
 
   roverInterpretor: RoverInterpretor;
-  detector: Detector;
 
-  constructor(roverInterpretor: RoverInterpretor, detector: Detector) {
+  constructor(roverInterpretor: RoverInterpretor) {
     this.roverInterpretor = roverInterpretor;
-    this.detector = detector;
   }
 
   /**
    * Méthode qui va permettre d'executer la liste de commande 
-   * passer en parametre au rover comme le fait de se deplacer, pivoter  ou 
-   * encore, annoncer si il rencontre un obstacle.
-   * @param listActions 
-   * @returns 
+   * passer en paramètre
+   * @param commandList liste de commande à transmettre à l'interpréteur
    */
   public executListCommand(commandList: string) {
     for (let i = 0; i < commandList.length; i++) {
@@ -24,13 +19,8 @@ export class Command {
       if (!['A', 'R', 'G', 'D'].includes(character))
         continue;
 
-      this.roverInterpretor.Interpretor(character);
+      this.roverInterpretor.interpret(character);
 
-      if (this.detector.checkHasObstacle()) return;
-      
-
-      this.detector.verifyOrRefreshPosition();
     }
   }
 }
-

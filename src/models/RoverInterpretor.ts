@@ -1,28 +1,35 @@
 import { Rover } from './Rover';
+import { Detector } from './Detector';
+
 
 export class RoverInterpretor {
 
   rover: Rover;
+  detector: Detector;
 
-  constructor(rover: Rover) {
+  constructor(rover: Rover, detector: Detector) {
     this.rover = rover;
+    this.detector = detector;
   }
 
-  Interpretor(command: string) {
+  interpret(command: string) {
     switch (command) {
       case 'A':
-        this.rover.Avancer();
+        this.rover.moveForward();
         break;
       case 'R':
-        this.rover.Reculer();
+        this.rover.moveBackward();
         break;
       case 'G':
-        this.rover.Gauche();
+        this.rover.turnLeft();
         break;
       case 'D':
-        this.rover.Droite();
+        this.rover.turnRight();
         break;
     }
+
+    if (this.detector.checkHasObstacle()) return;
+    this.detector.checkAndRefreshRoverPosition();
 
   }
 
