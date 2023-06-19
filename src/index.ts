@@ -13,7 +13,7 @@ const prompt  = promptSync();
 let commandList = '';
 const Jupiter = new Planet(10, 10, [new Position(0, 2)]);
 
-const rover = new Rover(new Position(0, 0), Orientation.North, Jupiter);
+const rover = new Rover(new Position(0, 0), Orientation.North);
 const roverInterpretor = new RoverInterpretor(rover);
 const detector = new Detector(rover, Jupiter)
 const panneauCommand = new Command(roverInterpretor, detector);
