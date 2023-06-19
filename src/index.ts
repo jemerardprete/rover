@@ -18,7 +18,7 @@ const environment = new Environment(Jupiter,rover);
 
 while(movements.toUpperCase() != 'Q') {
     environment.getInformations();
-    movements = prompt('Indiquez une suite de commande pour déplacer le rover : F pour avancer, B pour reculer, L pour aller à gauche, R pour aller à droite : ');
+    movements = prompt('Indiquez une suite de commande pour déplacer le rover : A pour avancer, R pour reculer, G pour aller à gauche, D pour aller à droite : ');
     panneauCommand.executListCommand(movements, rover);
 }
 
