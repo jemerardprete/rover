@@ -34,7 +34,6 @@ describe('Tester le comportement tourner du rover', () => {
     panneauCommand.executListCommand(mouvements);
 
     // THEN - ASSERT
-    console.log(detector.getEnvironmentInformations());
     expect(rover.orientation).be.equal(Orientation.South);
   });
 
@@ -51,7 +50,6 @@ describe('Tester le comportement tourner du rover', () => {
     panneauCommand.executListCommand(mouvements);
 
     // THEN - ASSERT
-    console.log(detector.getEnvironmentInformations());
     expect(rover.orientation).be.equal(Orientation.West);
   });
 });

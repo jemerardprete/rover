@@ -36,7 +36,7 @@ export class RoverInterpretor {
         break;
     }
 
-    this.detector.checkAndRefreshRoverPosition();
+    this.detector.updateRoverPositionIfExceedsPlanetBoundary();
 
     return true;
 

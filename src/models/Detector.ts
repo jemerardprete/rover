@@ -24,9 +24,8 @@ export class Detector {
 
     /**
      * Vérifie et actualise la position (x ou y) du rover s'il dépasse une extrémité de la planète.
-     * @returns la position actualisée
      */
-    checkAndRefreshRoverPosition() {
+    updateRoverPositionIfExceedsPlanetBoundary() {
         const roverPosition = this.rover.position;
         const planetSize = this.planet.size;
 
@@ -36,9 +35,13 @@ export class Detector {
         if (roverPosition.x < 0) return roverPosition.x = planetSize.x;
 
         this.rover.position = roverPosition;
-
     }
 
+    /**
+     * Va vérifier si lors du prochain mouvement avancer ou reculer le rover va rencontrer un obstable
+     * @param movement le caractère qui représente
+     * @returns 
+     */
     nextMoveHasObstacle(movement: string) {
 
         if(movement !== 'A' && movement !== 'R') return false;
@@ -50,19 +53,19 @@ export class Detector {
         // Si j'avance ou recule mon rover
         switch (roverOrientation) {
             case Orientation.North: {
-                roverFuturePosition.y = (movement === 'A') ? roverFuturePosition.y++ : roverFuturePosition.y--;
+                roverFuturePosition.y = (movement === 'A') ? ++roverFuturePosition.y : --roverFuturePosition.y;
                 break;
             };
             case Orientation.South: {
-                roverFuturePosition.y = (movement === 'A') ? roverFuturePosition.y-- : roverFuturePosition.y++;
+                roverFuturePosition.y = (movement === 'A') ? --roverFuturePosition.y : ++roverFuturePosition.y;
                 break;
             };
             case Orientation.East: {
-                roverFuturePosition.x = (movement === 'A') ? roverFuturePosition.x++ : roverFuturePosition.x--;
+                roverFuturePosition.x = (movement === 'A') ? ++roverFuturePosition.x : --roverFuturePosition.x;
                 break;
             };
             case Orientation.West: {
-                roverFuturePosition.x = (movement === 'A') ? roverFuturePosition.x-- : roverFuturePosition.x++;
+                roverFuturePosition.x = (movement === 'A') ? --roverFuturePosition.x : ++roverFuturePosition.x;
                 break;
             };
         }
