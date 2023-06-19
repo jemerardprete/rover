@@ -33,7 +33,7 @@ describe('Tester le comportement tourner du rover', () => {
     panneauCommand.executListCommand(mouvements);
 
     // THEN - ASSERT
-    detector.getEnvironmentInformations();
+    console.log(detector.getEnvironmentInformations());
     expect(rover.orientation).be.equal(Orientation.South);
   });
 
@@ -50,7 +50,7 @@ describe('Tester le comportement tourner du rover', () => {
     panneauCommand.executListCommand(mouvements);
 
     // THEN - ASSERT
-    detector.getEnvironmentInformations();
+    console.log(detector.getEnvironmentInformations());
     expect(rover.orientation).be.equal(Orientation.West);
   });
 });
@@ -87,7 +87,7 @@ describe('Tester le comportement avancer du rover', () => {
     panneauCommand.executListCommand(mouvements);
 
     // THEN - ASSERT
-    expect(rover.position.y).be.equal(jupiter.sizeY);
+    expect(rover.position.y).be.equal(jupiter.size.y);
   });
 
 });

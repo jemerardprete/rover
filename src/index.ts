@@ -19,7 +19,7 @@ const detector = new Detector(rover, Jupiter)
 const panneauCommand = new Command(roverInterpretor, detector);
 
 while(commandList.toUpperCase() != 'Q') {
-    detector.getEnvironmentInformations();
+   console.log(detector.getEnvironmentInformations());
     commandList = prompt('Indiquez une suite de commande pour déplacer le rover : A pour avancer, R pour reculer, G pour aller à gauche, D pour aller à droite : ');
     panneauCommand.executListCommand(commandList);
 }

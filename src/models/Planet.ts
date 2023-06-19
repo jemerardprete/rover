@@ -1,13 +1,12 @@
 import Position from "./Position";
+import { Size } from "./Size";
 
 export class Planet {
-    sizeX: number;
-    sizeY: number;
+    size : Size;
     private obstacles: Position[];
 
-    public constructor(sizeX: number, sizeY: number, obstacles: Position[] = []) {
-        this.sizeX = sizeX;
-        this.sizeY = sizeY;
+     constructor(sizeX: number, sizeY: number, obstacles: Position[] = []) {
+        this.size = {x:sizeX,y:sizeY};
         this.obstacles = obstacles;
     }
 

@@ -27,10 +27,8 @@ export class Command {
 
       this.roverInterpretor.Interpretor(character);
 
-      if (this.detector.checkHasObstacle()) {
-        console.log('Il y a un obstacle');
-        return;
-      }
+      if (this.detector.checkHasObstacle()) return;
+      
 
       this.detector.verifyOrRefreshPosition();
     }

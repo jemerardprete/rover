@@ -12,8 +12,8 @@ export class Detector {
     }
 
     getEnvironmentInformations() {
-        console.log(`Le Rover se situe à ${this.rover.position.x} en X, à ${this.rover.position.y} en Y et est orienté au ${this.rover.orientation}`)
-        // console.log(`La planète mesure ${this.planet.sizeX} en X, et mesure ${this.planet.sizeY} en Y.`)
+        return `Le Rover se situe à ${this.rover.position.x} en X, à ${this.rover.position.y} en Y et est orienté au ${this.rover.orientation}`
+        
       }
 
     checkHasObstacle() {
@@ -27,11 +27,15 @@ export class Detector {
    * @returns la nouvelle position actualisé ou non
    */
     verifyOrRefreshPosition() {
+        const roverPosition = this.rover.position;
+        const planetSize = this.planet.size;
 
-        if(this.rover.position.y > this.planet.sizeY) return this.rover.position.y = 0;
-        if(this.rover.position.y < 0) return this.rover.position.y = this.planet.sizeY;
-        if(this.rover.position.x > this.planet.sizeX) return this.rover.position.x = 0;
-        if(this.rover.position.x < 0) return this.rover.position.x = this.planet.sizeX;
+        if(roverPosition.y > planetSize.y) return roverPosition.y = 0;
+        if(roverPosition.y < 0) return roverPosition.y = planetSize.y;
+        if(roverPosition.x > planetSize.x) return roverPosition.x = 0;
+        if(roverPosition.x < 0) return roverPosition.x = planetSize.x;
+
+        this.rover.position = roverPosition;
 
     }
 
