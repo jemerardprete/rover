@@ -1,21 +1,21 @@
 import Position from "./Position";
+import { Size } from "./Size";
 
 export class Planet {
-    sizeX: number;
-    sizeY: number;
-    obstacles: Position[];
+    size: Size;
+    private obstacles: Position[];
 
-    public constructor(sizeX: number, sizeY: number, obstacles: Position[] = []) {
-        this.sizeX = sizeX;
-        this.sizeY = sizeY;
+    constructor(sizeX: number, sizeY: number, obstacles: Position[] = []) {
+        this.size = { x: sizeX, y: sizeY };
         this.obstacles = obstacles;
     }
-}
 
-const Mars = new Planet(15, 15)
-const Jupiter = new Planet(10, 10, [new Position(0, 2)])
+    /**
+     * Récupère les positions des obstacles 
+     * @returns un tableau contenant les positions des obstacles 
+     */
+    getPositionObstacles() {
+        return this.obstacles;
+    }
 
-export {
-    Mars,
-    Jupiter
 }
